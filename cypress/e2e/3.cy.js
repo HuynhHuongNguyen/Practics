@@ -1,9 +1,14 @@
-describe('My First Test', function() {
-  it('Search on amazon', function() {
-    cy.viewport(2440,1200)
-    cy.visit('https://www.amazon.com/')
-    cy.get('#twotabsearchtextbox').type('Superman')
-    cy.get('#nav-search-submit-button').click()
-    // cy.get('span.a-color-state').contains('Superman')
+describe('example to-do app', () => {
+  beforeEach(() => {
+      cy.visit('https://demo.guru99.com/test/newtours/')
+  })
+
+  Cypress.Commands.add('LogIn', (username, password) => {
+    cy.get(':nth-child(2) > [width="112"] > input').type(username)
+    cy.get(':nth-child(3) > [width="112"] > input').type(password)
+    cy.get('div > input').click()
+  })
+  it('login', () => {
+  cy.LogIn('tutorial','tutorial')
   })
 })

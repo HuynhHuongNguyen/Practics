@@ -1,34 +1,7 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('LogIn', (username, password) => {
-    cy.get(':nth-child(2) > [width="112"] > input').type(username)
-    cy.get(':nth-child(3) > [width="112"] > input').type(password)
-    cy.get('div > input').click()
+describe('example to-do app', () => {
+  beforeEach(() => {
+      cy.visit('https://demo.guru99.com/test/newtours/')
   })
-
   Cypress.Commands.add('Booking', (Type,Passengers,Departing,On,Arriving,Returning,Service,Airline) => {
     cy.get(':nth-child(2) > [width="80"] > a').click()
     if (Type == 'Round Trip'){
@@ -52,3 +25,7 @@ Cypress.Commands.add('LogIn', (username, password) => {
     cy.get(':nth-child(10) > [style="font-family:Arial, Helvetica;font-size:13px;color:#000;padding:5px;"] > select').select(Airline)
     cy.get('td > input').click()
   })
+  it('booking', () => {
+      cy.Booking('One way','4','Paris','September','Sydney','December','First class','Unified Airlines')
+  })
+})
